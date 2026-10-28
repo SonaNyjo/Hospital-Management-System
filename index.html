@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarePoint Hospital | Interactive Prototype</title>
+<style>
+:root{--navy:#19344f;--teal:#168b86;--teal2:#e8f7f5;--bg:#f4f7fa;--ink:#293b4d;--muted:#718195;--line:#e3ebf0;--white:#fff;--orange:#fff1dd;--green:#e7f7ed;--red:#fff0ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{display:flex;min-height:100vh}.sidebar{width:245px;background:#fff;border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;flex-shrink:0}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 28px;color:var(--navy);font-size:21px;font-weight:800}.brandmark{width:39px;height:39px;border-radius:13px;background:var(--teal);color:white;display:grid;place-items:center;font-size:28px}.side-label{padding:10px 12px;color:#9aa7b4;font-size:10px;font-weight:800;letter-spacing:1.4px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;text-align:left;padding:13px 14px;border-radius:11px;color:#637488;font-weight:650;display:flex;align-items:center;gap:12px}.nav button .ico{width:22px;text-align:center;font-size:18px}.nav button.active,.nav button:hover{background:var(--teal2);color:var(--teal)}.side-bottom{margin-top:auto}.help-card{background:#f1f8fb;border-radius:14px;padding:15px;margin:18px 4px}.help-card strong{color:var(--navy);font-size:13px}.help-card p{font-size:12px;line-height:1.5;color:var(--muted)}.help-card button{border:0;background:var(--navy);color:white;padding:9px 11px;border-radius:8px;font-size:12px;font-weight:700;width:100%}.main{flex:1;min-width:0}.topbar{height:78px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;gap:15px}.search{max-width:390px;width:100%;position:relative}.search input{width:100%;border:1px solid var(--line);border-radius:11px;background:#f8fafc;padding:12px 14px 12px 40px;outline:none}.search span{position:absolute;left:14px;top:10px;color:var(--muted)}.top-right{display:flex;align-items:center;gap:16px}.bell{border:1px solid var(--line);background:white;border-radius:11px;padding:10px;font-size:18px}.user{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:750}.avatar{width:38px;height:38px;border-radius:50%;background:#ffe2d8;color:#945547;display:grid;place-items:center;font-weight:800}.content{max-width:1400px;margin:auto;padding:30px 34px 48px}.page{display:none}.page.active{display:block}.eyebrow{color:var(--teal);font-size:10px;font-weight:850;letter-spacing:1.7px;text-transform:uppercase}.heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}.heading h1{color:var(--navy);font-size:27px;margin:7px 0}.heading p{color:var(--muted);font-size:14px;margin:0}.btn{border:0;border-radius:10px;background:var(--teal);color:white;padding:12px 16px;font-weight:750;box-shadow:0 5px 12px #168b861c}.btn:hover{background:#10746f}.btn.secondary{background:white;color:var(--navy);border:1px solid var(--line);box-shadow:none}.btn.small{padding:9px 12px;font-size:12px}.hero{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:27px 30px;border-radius:19px;background:linear-gradient(115deg,#e2f6f3,#f0f7ff);margin-bottom:21px;overflow:hidden}.hero h2{font-size:25px;line-height:1.3;color:var(--navy);margin:9px 0;max-width:530px}.hero p{font-size:14px;color:#65788a;line-height:1.6;max-width:560px}.hero-art{height:145px;width:175px;flex-shrink:0;border-radius:35% 65% 58% 42%;background:#ffffffa8;display:grid;place-items:center;font-size:80px;transform:rotate(4deg)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:21px}.stat,.card{background:white;border:1px solid var(--line);border-radius:15px}.stat{padding:17px;display:flex;align-items:center;gap:12px}.stat-icon{width:43px;height:43px;border-radius:12px;background:var(--teal2);display:grid;place-items:center;font-size:21px}.stat small{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:22px;color:var(--navy);margin-top:4px}.columns{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.card{padding:21px;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:5px}.card h3{margin:0;color:var(--navy);font-size:17px}.muted{color:var(--muted);font-size:13px;line-height:1.55}.card-sub{color:var(--muted);font-size:12px;margin:7px 0 17px}.visit{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line)}.docpic{width:45px;height:45px;border-radius:13px;background:#e6efff;display:grid;place-items:center;font-size:23px;flex-shrink:0}.visit-info{flex:1;min-width:0}.visit-info strong{display:block;font-size:13px;color:var(--navy);margin-bottom:5px}.visit-info small{color:var(--muted);font-size:11px}.pill{display:inline-block;border-radius:20px;padding:6px 9px;font-size:10px;font-weight:850;background:var(--green);color:#237749;white-space:nowrap}.pill.pending{background:var(--orange);color:#9b680f}.pill.cancel{background:var(--red);color:#b34d3e}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick{border:1px solid var(--line);background:#fbfdff;border-radius:12px;padding:15px;text-align:left;color:var(--navy);font-weight:750}.quick:hover{border-color:var(--teal);background:var(--teal2)}.quick span{display:block;font-size:23px;margin-bottom:11px}.notice{display:none;padding:12px 14px;margin-top:15px;border-radius:10px;background:var(--green);color:#206b40;font-size:13px;line-height:1.5}.notice.show{display:block}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;color:#42576b}.field input,.field select,.field textarea{border:1px solid #dce5eb;background:white;border-radius:10px;padding:12px;color:var(--ink);outline:none;width:100%}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px #168b861c}.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);font-size:12px}th{font-size:10px;color:#8593a2;letter-spacing:.8px;text-transform:uppercase}.doctors{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.doctor{text-align:center}.doctor .docpic{width:66px;height:66px;font-size:31px;border-radius:20px;margin:0 auto 13px}.doctor h3{margin:7px 0;color:var(--navy);font-size:16px}.doctor .special{color:var(--teal);font-size:12px;font-weight:800}.doctor p{font-size:12px;color:var(--muted);line-height:1.6}.doctor .btn{width:100%;margin-top:7px}.departments{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.dept{padding:18px}.dept-ico{width:44px;height:44px;border-radius:13px;background:var(--teal2);display:grid;place-items:center;font-size:23px;margin-bottom:13px}.dept h3{color:var(--navy);font-size:15px;margin:0 0 8px}.dept p{font-size:12px;color:var(--muted);line-height:1.5;min-height:38px}.dept button{margin-top:8px}.profile-grid{display:grid;grid-template-columns:250px 1fr;gap:18px}.profile-card{text-align:center}.profile-big{width:86px;height:86px;border-radius:50%;background:#ffe2d8;color:#945547;font-size:28px;font-weight:800;display:grid;place-items:center;margin:8px auto 14px}.profile-card h2{color:var(--navy);font-size:19px;margin:0}.profile-card p{color:var(--muted);font-size:12px}.info-row{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;font-size:13px}.info-row span{color:var(--muted)}.info-row strong{text-align:right;color:var(--navy)}.emergency{background:#fff4ef;border:1px solid #ffdfd4;color:#925446;border-radius:12px;padding:14px;font-size:12px;line-height:1.6;margin-top:16px}.footer{text-align:center;padding:27px 10px 0;color:#94a1af;font-size:11px}.mobile-brand{display:none}
+@media(max-width:1050px){.sidebar{width:210px}.content{padding:25px 22px}.topbar{padding:0 22px}.stats{grid-template-columns:repeat(2,1fr)}.doctors,.departments{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.shell{display:block}.sidebar{width:100%;padding:12px 14px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0 5px 12px}.side-label,.side-bottom{display:none}.nav{display:flex;overflow-x:auto}.nav button{white-space:nowrap;padding:10px 12px;font-size:12px}.topbar{height:65px;padding:0 15px}.search{max-width:none}.top-right .user span{display:none}.content{padding:22px 14px 35px}.heading{align-items:flex-start;flex-direction:column}.heading h1{font-size:24px}.hero{padding:22px 19px}.hero-art{width:100px;height:100px;font-size:55px}.hero h2{font-size:21px}.columns{grid-template-columns:1fr}.stats{gap:10px}.stat{padding:13px}.stat strong{font-size:19px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.profile-grid{grid-template-columns:1fr}.doctors,.departments{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.hero-art{display:none}.stats{grid-template-columns:1fr 1fr}.stat{align-items:flex-start;flex-direction:column}.doctors,.departments{grid-template-columns:1fr}.quick-grid{gap:8px}.quick{padding:12px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">+</div><span>CarePoint</span></div>
+  <div class="side-label">PATIENT PORTAL</div>
+  <nav class="nav" aria-label="Main navigation">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span> Dashboard</button>
+    <button data-page="appointments"><span class="ico">▣</span> Appointments</button>
+    <button data-page="doctors"><span class="ico">♙</span> Doctors</button>
+    <button data-page="departments"><span class="ico">✚</span> Departments</button>
+    <button data-page="book"><span class="ico">＋</span> Book a Visit</button>
+    <button data-page="profile"><span class="ico">◎</span> My Profile</button>
+  </nav>
+  <div class="side-bottom">
+    <div class="help-card"><strong>Need help?</strong><p>Our support team can guide you with appointments and hospital services.</p><button onclick="showEmergency()">Emergency information</button></div>
+    <div class="muted" style="padding:0 12px;font-size:10px">CarePoint prototype · Version 1.0</div>
+  </div>
+</aside>
+<div class="main">
+  <header class="topbar">
+    <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search doctors or departments..." aria-label="Search doctors or departments"></div>
+    <div class="top-right"><button class="bell" title="Notifications" onclick="alert('You are all caught up!')">♧</button><div class="user"><div class="avatar">SN</div><span>Sona Nyjo</span></div></div>
+  </header>
+  <main class="content">
+    <section class="page active" id="dashboard">
+      <div class="heading"><div><div class="eyebrow">Your health, our priority</div><h1>Good morning, Sona 👋</h1><p>Welcome to your personal healthcare dashboard.</p></div><button class="btn" onclick="showPage('book')">＋ Book an appointment</button></div>
+      <div class="hero"><div><div class="eyebrow">Care that connects</div><h2>Healthcare made simpler, safer, and closer to you.</h2><p>Manage appointments, discover specialists, and keep your care journey organised in one place.</p><button class="btn" onclick="showPage('doctors')">Explore our doctors →</button></div><div class="hero-art">🩺</div></div>
+      <div class="stats">
+        <div class="stat"><div class="stat-icon">📅</div><div><small>Upcoming visits</small><strong id="upcomingCount">2</strong></div></div>
+        <div class="stat"><div class="stat-icon">👩‍⚕️</div><div><small>Available doctors</small><strong>12</strong></div></div>
+        <div class="stat"><div class="stat-icon">🏥</div><div><small>Departments</small><strong>6</strong></div></div>
+        <div class="stat"><div class="stat-icon">💚</div><div><small>Patient support</small><strong>24/7</strong></div></div>
+      </div>
+      <div class="columns">
+        <div class="card"><div class="card-head"><h3>Upcoming appointments</h3><button class="btn secondary small" onclick="showPage('appointments')">View all</button></div><p class="card-sub">Your next steps to better health</p><div id="dashboardVisits">
+          <div class="visit"><div class="docpic">👩‍⚕️</div><div class="visit-info"><strong>Dr. Emily Carter</strong><small>Cardiology · 24 Oct 2026, 10:30 AM</small></div><span class="pill">Confirmed</span></div>
+          <div class="visit"><div class="docpic">👨‍⚕️</div><div class="visit-info"><strong>Dr. Noah Wilson</strong><small>General Medicine · 28 Oct 2026, 02:00 PM</small></div><span class="pill pending">Pending</span></div>
+        </div></div>
+        <div class="card"><h3>Quick actions</h3><p class="card-sub">What would you like to do today?</p><div class="quick-grid">
+          <button class="quick" onclick="showPage('book')"><span>🗓️</span>Book a visit</button>
+          <button class="quick" onclick="showPage('doctors')"><span>👩‍⚕️</span>Find a doctor</button>
+          <button class="quick" onclick="showPage('appointments')"><span>📋</span>My visits</button>
+          <button class="quick" onclick="showPage('departments')"><span>🏥</span>Departments</button>
+        </div><div class="emergency" id="emergencyBox" style="display:none"><strong>Emergency guidance:</strong> Call your local emergency number or visit the nearest emergency department. This student prototype is not an emergency service.</div></div>
+      </div>
+    </section>
+    <section class="page" id="appointments">
+      <div class="heading"><div><div class="eyebrow">Your care schedule</div><h1>My Appointments</h1><p>Review appointment details and current request status.</p></div><button class="btn" onclick="showPage('book')">＋ New appointment</button></div>
+      <div class="card"><div class="card-head"><h3>Appointment history</h3><span class="pill">All visits</span></div><p class="card-sub">Sample records and appointment requests created in this prototype.</p><div class="tablewrap"><table><thead><tr><th>Doctor</th><th>Department</th><th>Date & time</th><th>Reason</th><th>Status</th><th>Action</th></tr></thead><tbody id="appointmentRows">
+        <tr><td>Dr. Emily Carter</td><td>Cardiology</td><td>24 Oct 2026 · 10:30 AM</td><td>Routine check-up</td><td><span class="pill">Confirmed</span></td><td>—</td></tr>
+        <tr><td>Dr. Noah Wilson</td><td>General Medicine</td><td>28 Oct 2026 · 02:00 PM</td><td>General consultation</td><td><span class="pill pending">Pending</span></td><td>—</td></tr>
+      </tbody></table></div><div class="notice" id="appointmentNotice" role="status"></div></div>
+    </section>
+    <section class="page" id="doctors">
+      <div class="heading"><div><div class="eyebrow">Meet your care team</div><h1>Find a Doctor</h1><p>Explore specialists and request a visit that suits you.</p></div></div>
+      <div class="doctors" id="doctorCards">
+        <div class="card doctor" data-search="emily carter cardiology heart"><div class="docpic">👩‍⚕️</div><h3>Dr. Emily Carter</h3><div class="special">Cardiology</div><p>10 years experience<br>Heart health and preventive care</p><button class="btn small" onclick="bookDoctor('Dr. Emily Carter','Cardiology')">Book appointment</button></div>
+        <div class="card doctor" data-search="noah wilson general medicine"><div class="docpic" style="background:#fcebdc">👨‍⚕️</div><h3>Dr. Noah Wilson</h3><div class="special">General Medicine</div><p>8 years experience<br>Routine check-ups and primary care</p><button class="btn small" onclick="bookDoctor('Dr. Noah Wilson','General Medicine')">Book appointment</button></div>
+        <div class="card doctor" data-search="aisha rahman pediatrics child"><div class="docpic" style="background:#f3e8ff">👩🏻‍⚕️</div><h3>Dr. Aisha Rahman</h3><div class="special">Pediatrics</div><p>7 years experience<br>Child wellness and development</p><button class="btn small" onclick="bookDoctor('Dr. Aisha Rahman','Pediatrics')">Book appointment</button></div>
+        <div class="card doctor" data-search="liam chen dermatology skin"><div class="docpic" style="background:#e4f6ec">👨🏻‍⚕️</div><h3>Dr. Liam Chen</h3><div class="special">Dermatology</div><p>9 years experience<br>Skin health and treatment</p><button class="btn small" onclick="bookDoctor('Dr. Liam Chen','Dermatology')">Book appointment</button></div>
+        <div class="card doctor" data-search="sophia menon orthopedics bone"><div class="docpic" style="background:#fff0dc">👩🏽‍⚕️</div><h3>Dr. Sophia Menon</h3><div class="special">Orthopedics</div><p>11 years experience<br>Bone, joint and mobility care</p><button class="btn small" onclick="bookDoctor('Dr. Sophia Menon','Orthopedics')">Book appointment</button></div>
+        <div class="card doctor" data-search="arjun nair dental teeth"><div class="docpic" style="background:#e6f1ff">🧑‍⚕️</div><h3>Dr. Arjun Nair</h3><div class="special">Dental Care</div><p>6 years experience<br>Oral health and preventive dentistry</p><button class="btn small" onclick="bookDoctor('Dr. Arjun Nair','Dental Care')">Book appointment</button></div>
+      </div><div class="notice" id="searchNotice">No matching doctors found. Try a different search term.</div>
+    </section>
+    <section class="page" id="departments">
+      <div class="heading"><div><div class="eyebrow">Care for every stage</div><h1>Hospital Departments</h1><p>Choose a department to see its services or book a visit.</p></div></div>
+      <div class="departments">
+        <div class="card dept"><div class="dept-ico">❤️</div><h3>Cardiology</h3><p>Heart health, prevention and cardiovascular consultations.</p><button class="btn secondary small" onclick="bookDepartment('Cardiology')">Book a visit →</button></div>
+        <div class="card dept"><div class="dept-ico">🩺</div><h3>General Medicine</h3><p>Routine check-ups, common illnesses and primary care.</p><button class="btn secondary small" onclick="bookDepartment('General Medicine')">Book a visit →</button></div>
+        <div class="card dept"><div class="dept-ico">🌿</div><h3>Dermatology</h3><p>Skin, hair and nail health assessments and care.</p><button class="btn secondary small" onclick="bookDepartment('Dermatology')">Book a visit →</button></div>
+        <div class="card dept"><div class="dept-ico">🧸</div><h3>Pediatrics</h3><p>Child health, growth, development and wellness.</p><button class="btn secondary small" onclick="bookDepartment('Pediatrics')">Book a visit →</button></div>
+        <div class="card dept"><div class="dept-ico">🦴</div><h3>Orthopedics</h3><p>Bone, joint, muscle and mobility-related care.</p><button class="btn secondary small" onclick="bookDepartment('Orthopedics')">Book a visit →</button></div>
+        <div class="card dept"><div class="dept-ico">🦷</div><h3>Dental Care</h3><p>Oral hygiene, dental check-ups and preventive care.</p><button class="btn secondary small" onclick="bookDepartment('Dental Care')">Book a visit →</button></div>
+      </div>
+    </section>
+    <section class="page" id="book">
+      <div class="heading"><div><div class="eyebrow">Appointment scheduling</div><h1>Book an Appointment</h1><p>Enter your details and preferred visit time.</p></div></div>
+      <div class="card"><form id="bookingForm"><div class="formgrid">
+        <div class="field"><label for="patient">Patient name *</label><input id="patient" required placeholder="Enter full name" value="Sona Nyjo"></div>
+        <div class="field"><label for="phone">Phone number *</label><input id="phone" required type="tel" placeholder="+91 98765 43210" pattern="[0-9+() -]{7,20}"></div>
+        <div class="field"><label for="departmentSelect">Department *</label><select id="departmentSelect" required><option value="">Choose department</option><option>General Medicine</option><option>Cardiology</option><option>Dermatology</option><option>Pediatrics</option><option>Orthopedics</option><option>Dental Care</option></select></div>
+        <div class="field"><label for="doctorSelect">Preferred doctor *</label><select id="doctorSelect" required><option value="">Choose doctor</option><option>Any available doctor</option><option>Dr. Emily Carter</option><option>Dr. Noah Wilson</option><option>Dr. Aisha Rahman</option><option>Dr. Liam Chen</option><option>Dr. Sophia Menon</option><option>Dr. Arjun Nair</option></select></div>
+        <div class="field"><label for="date">Preferred date *</label><input id="date" type="date" required></div>
+        <div class="field"><label for="time">Preferred time *</label><select id="time" required><option value="">Choose time</option><option>09:00 AM</option><option>10:30 AM</option><option>11:30 AM</option><option>02:00 PM</option><option>03:30 PM</option><option>04:30 PM</option></select></div>
+        <div class="field full"><label for="reason">Reason for visit</label><textarea id="reason" rows="3" placeholder="Briefly describe the reason for your visit (optional)"></textarea></div>
+      </div><div class="actions"><button class="btn" type="submit">Submit appointment request</button><button class="btn secondary" type="reset">Clear form</button></div><div class="notice" id="bookingNotice" role="status"></div><p class="muted" style="margin-top:14px">Prototype note: this demo does not transmit your details to a real hospital.</p></form></div>
+    </section>
+    <section class="page" id="profile">
+      <div class="heading"><div><div class="eyebrow">Personal information</div><h1>My Profile</h1><p>View and update the sample patient profile.</p></div></div>
+      <div class="profile-grid"><div class="card profile-card"><div class="profile-big">SN</div><h2 id="profileName">Sona Nyjo</h2><p>Patient ID: CP-2026-1042</p><span class="pill">Active patient</span><div class="emergency">Keep your contact information up to date so the hospital can reach you about appointments.</div></div>
+      <div class="card"><h3>Patient details</h3><p class="card-sub">These are sample details for a student UI prototype.</p><form id="profileForm"><div class="formgrid">
+        <div class="field"><label for="profileFirst">Full name</label><input id="profileFirst" value="Sona Nyjo" required></div>
+        <div class="field"><label for="profilePhone">Phone number</label><input id="profilePhone" value="+91 98765 43210" required></div>
+        <div class="field"><label for="profileEmail">Email address</label><input id="profileEmail" type="email" value="jordan@example.com" required></div>
+        <div class="field"><label for="profileDob">Date of birth</label><input id="profileDob" type="date"></div>
+        <div class="field"><label for="profileGender">Gender</label><select id="profileGender"><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+        <div class="field"><label for="profileBlood">Blood group</label><select id="profileBlood"><option>Not provided</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+      </div><div class="actions"><button class="btn" type="submit">Save profile</button></div><div class="notice" id="profileNotice" role="status"></div></form></div></div>
+    </section>
+    <div class="footer">CarePoint Hospital Management System · Interactive academic prototype · SDG 3: Good Health and Well-Being</div>
+  </main>
+</div>
+</div>
+<script>
+const navBtns=[...document.querySelectorAll('[data-page]')];
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));navBtns.forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});}
+navBtns.forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function showEmergency(){showPage('dashboard');const box=document.getElementById('emergencyBox');box.style.display=box.style.display==='none'?'block':'none';}
+function bookDoctor(name,dept){document.getElementById('doctorSelect').value=name;document.getElementById('departmentSelect').value=dept;showPage('book');}
+function bookDepartment(dept){document.getElementById('departmentSelect').value=dept;showPage('book');}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const dateInput=document.getElementById('date');const now=new Date();dateInput.min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().split('T')[0];
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const patient=document.getElementById('patient').value.trim(),phone=document.getElementById('phone').value.trim(),dept=document.getElementById('departmentSelect').value,doctor=document.getElementById('doctorSelect').value,date=document.getElementById('date').value,time=document.getElementById('time').value,reason=document.getElementById('reason').value.trim()||'Not specified';
+ const d=new Date(date+'T00:00:00');const pretty=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+ const row=document.createElement('tr');row.innerHTML=`<td>${safe(doctor)}</td><td>${safe(dept)}</td><td>${pretty} · ${safe(time)}</td><td>${safe(reason)}</td><td><span class="pill pending">Requested</span></td><td><button class="btn secondary small" onclick="cancelVisit(this)">Cancel</button></td>`;document.getElementById('appointmentRows').appendChild(row);
+ const visit=document.createElement('div');visit.className='visit';visit.innerHTML=`<div class="docpic">🩺</div><div class="visit-info"><strong>${safe(doctor)}</strong><small>${safe(dept)} · ${pretty}, ${safe(time)}</small></div><span class="pill pending">Requested</span>`;document.getElementById('dashboardVisits').appendChild(visit);
+ document.getElementById('upcomingCount').textContent=String(Number(document.getElementById('upcomingCount').textContent)+1);
+ const n=document.getElementById('bookingNotice');n.textContent=`Appointment request created for ${patient}. The selected visit is ${dept} with ${doctor} on ${pretty} at ${time}. This is a local demo; no real booking was transmitted.`;n.classList.add('show');
+ document.getElementById('appointmentNotice').textContent=`A new appointment request for ${patient} has been added to this page.`;document.getElementById('appointmentNotice').classList.add('show');
+});
+function cancelVisit(btn){const row=btn.closest('tr');row.querySelector('td:nth-child(5)').innerHTML='<span class="pill cancel">Cancelled</span>';btn.disabled=true;btn.textContent='Cancelled';}
+document.getElementById('profileForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('profileFirst').value.trim();document.getElementById('profileName').textContent=name;document.querySelector('.user span').textContent=name;const notice=document.getElementById('profileNotice');notice.textContent='Profile changes updated in this demo session.';notice.classList.add('show');});
+document.getElementById('globalSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();const cards=[...document.querySelectorAll('.doctor')];let count=0;cards.forEach(c=>{const ok=!q||c.dataset.search.includes(q);c.style.display=ok?'':'none';if(ok)count++;});document.getElementById('searchNotice').classList.toggle('show',Boolean(q)&&count===0);if(q)showPage('doctors');});
+</script>
+</body>
+</html>
